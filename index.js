@@ -4,7 +4,11 @@ const app= express();
 const expressLayouts= require('express-ejs-layouts');
 const db = require('./config/mongoose')
 const port = 5555;
-
+ 
+//used for session cookie
+const session =require('express-session')
+const passport =require('passport')
+const passpostLocal =require('passport-local')
 
 app.use(express.urlencoded());
 app.use(express.static('./assets'));
@@ -15,6 +19,19 @@ app.use(expressLayouts);
 // app.set('layout','./views/layouts/layout');
 app.set('view engine','ejs');
 app.set('views','./views')
+
+
+app.use(session({
+    name:'info',
+    secret:'tufani',
+    resave:false,
+    saveUninitialized:false
+}))
+
+
+// Configure Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // use routes
 app.use('/',require('./routes'));
