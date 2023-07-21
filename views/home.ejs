@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/styles/home.css">
+
+<!-- <form action="/users/get-song" method="post" id="search song">
+            <input type="text" name="song" placeholder="enter song name">
+            <input type="submit" value="search">
+        </form> -->
+<div class="flex" id="wrapper">
+    <section id="buttons">
+        <h2> <a href="/users/home">Home</a></h2>
+        <h2 id="playlist">Playlist</h2>
+        <h2 id="favorite-songs">Favorites Songs</h2>
+        <h2 id="Logout"><a href="/users/sign-out"> Logout</a></h2>
+    </section>
+    <section id="requested-data">
+
+        <ul id="song-list">
+
+            <% for(let song of tracks){%>
+                <li>
+                    <img class="cover" src="<%= song.artist.picture %>">
+                    <div class="song-details-container">
+                        <h4>
+                            <%= song.title %>
+                        </h4>
+                        <p><%= song.artist.name %></p>
+                    </div>
+                        <a href="#" class="favorite-link" data-song-id="<%= song.id %>">O</a>
+                        <button class="show-playlists" data-song-id="<%= song.id %>">Show Playlists</button>
+                    
+                    <ul class="playlist-list" style="display: none;"></ul> <!-- Add an empty <ul> for playlists -->
+                </li>
+                <%}%>
+        </ul>
+    </section>
+</div>
+
+<script src="/scripts/home.js"></script>
